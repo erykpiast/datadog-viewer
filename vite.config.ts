@@ -28,5 +28,6 @@ export default defineConfig({
     rollupOptions: {
       input: "src/panel.html",
     },
+    target: "esnext",
   },
 });
