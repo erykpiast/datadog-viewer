@@ -1,0 +1,76 @@
+.icon-button {
+  height: var(--button-size);
+  width: var(--button-size);
+  
+  position: relative;
+  
+  &:is(button) {
+    appearance: none;
+    background: transparent;
+    border: none;
+  }
+ 
+  & > input {
+    display: none;
+  }
+  
+  & > label,
+  &:is(button) > span {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+  
+    color: var(--icon-color);
+    cursor: pointer;
+
+    height: var(--button-size);
+    padding: 0;
+
+    /* hide text */
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -1000px;
+
+    &::before {
+      content: "";
+      display: block;
+
+      background-color: currentColor;
+      color: var(--icon-color);
+      mask: center / contain no-repeat;
+      mask-image: var(--icon-button-image);
+
+      height: var(--icon-size);
+      width: var(--icon-size);
+
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    &::after {
+      content: "";
+      display: none;
+      
+      background-color: var(--icon-highlight-color);
+      border-radius: inherit;
+      
+      height: var(--button-size);
+      width: var(--button-size);
+
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    &:hover::after {
+      display: block;
+    }
+    
+    &:hover:active::after {
+      background-color: var(--button-active-highlight-color);
+    }
+  }
+}

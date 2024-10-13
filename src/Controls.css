@@ -1,0 +1,23 @@
+.controls {
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-2);
+  
+  height: min-content;
+  padding: var(--spacing-0h) var(--spacing-2);
+  padding-right: var(--spacing-3);
+
+  border-bottom: 1px solid var(--border-color);
+  
+  & > hr {
+    display: block;
+
+    align-self: stretch;
+    width: var(--divider-width);
+    
+    margin: var(--divider-margin-vertical) var(--divider-margin-horizontal);
+    
+    border: 0;
+    background-color: var(--divider-color);
+  }
+}

@@ -1,0 +1,48 @@
+.toggle-button {
+  display: flex;
+  align-items: center;
+  
+  & > label {
+    order: 2;
+  }
+  
+  & > input {
+    margin: var(--spacing-3);
+    order: 1;
+    position: relative;
+    
+    height: var(--input-checkbox-size);
+    width: var(--input-checkbox-size);
+
+    &::after {
+      content: "";
+      display: none;
+      
+      background-color: var(--icon-highlight-color);
+      border-radius: 50%;
+      
+      height: var(--button-size);
+      width: var(--button-size);
+
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    &:hover::after {
+      display: block;
+    }
+    
+    &:hover:active::after {
+      background-color: var(--button-active-highlight-color);
+    }
+  }
+}
+
+.toggle-icon-button {
+  & > label:has(+ input[type=checkbox]:checked)::before {
+    color: var(--toggle-button-icon-color-toggled, var(--icon-toggle-color));
+    mask-image: var(--toggle-button-icon-image-toggled);
+  }
+}

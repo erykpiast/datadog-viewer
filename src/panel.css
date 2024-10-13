@@ -1,0 +1,215 @@
+:root {
+  --background-color: #ffffff;
+  --background-color-accent: #282828;
+  --text-color: #000000;
+  --overlay-color: color-mix(in sRGB, #fdfcfb 16%, transparent);
+  --overlay-color-light: color-mix(in sRGB, #fdfcfb 10%, transparent);
+
+  --loading-spinner-overlay-color: var(--overlay-color);
+  --loading-spinner-color: #a8c7fa;
+  --loading-spinner-color-highlight: rgb(124, 172, 248);
+  --loading-spinner-size: 2.5rem;
+  --loading-spinner-thickness: .25rem;
+
+  --font-size-default: 12px;
+  --font-size-small: 11px;
+  --font-size-big: 14px;
+  
+  --border-color: #ccc;
+  --border-hover-color: var(--text-color);
+  --border-hover-color: #999;
+  --border-focus-color: #0078d7;
+
+  --button-color: #666;
+  --button-background-color: #f0f0f0;
+  --button-size: 1.5rem;
+  --button-active-highlight-color: var(--overlay-color);
+  
+  --icon-size: 1.25rem;
+  --icon-size-small: 1rem;
+  --icon-color: #c7c7c7;
+  --icon-highlight-color: var(--overlay-color-light);
+  --icon-toggle-color: #7cacf8ff;
+  --icon-toggle-color-stop: #e46962;
+  
+  --input-placeholder-color: #999;
+  --input-text-height: 1.25rem;
+  --input-color: #e3e3e3ff;
+  --input-checkbox-size: .75rem;
+  --input-background-color: var(--background-color-accent);
+  --input-hover-background-color: #4f4f4f;
+  --input-border-color: #757575ff;
+  --input-focus-border-color: #a8c7fa;
+  
+  --pill-text-color: #e3e3e3ff;
+  --pill-border-color: #757575ff;
+  --pill-checked-background-color: #004a77ff;
+  --pill-checked-text-color: #c2e7ffff;
+  --pill-margin: var(--spacing-1);
+  --pill-padding-vertical: var(--spacing-1h);
+  --pill-padding-horizontal: var(--spacing-3);
+  
+  --divider-color: #5e5e5eff;
+  --divider-width: 1px;
+  --divider-margin-horizontal: var(--pill-margin);
+  --divider-margin-vertical: var(--spacing-2);
+  
+  --spacing-0h: .0625rem;
+  --spacing-1: .125rem;
+  --spacing-1h: calc(var(--spacing-1) * 1.5);
+  --spacing-2: calc(var(--spacing-1) * 2);
+  --spacing-3: calc(var(--spacing-1) * 3);
+  --spacing-4: calc(var(--spacing-1) * 4);
+  
+  --table-row-background-color-even: #1f1f1f;
+  --table-row-background-color-odd: #28292a;
+  --table-row-background-selected: #444746;
+  --table-row-background-selected-focus: #004a77;
+  --table-row-background-hover: var(--overlay-color-light);
+  --table-border-color: #5e5e5eff;
+  
+  --panel-height: calc(1.625rem + 1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1e1e1e;
+    --text-color: #c7c7c7ff;
+    
+    --border-color: #555;
+    --border-hover-color: #999;
+    
+    --button-background-color: #f0f0f0;
+    
+    --input-placeholder-color: #999;
+    --input-background-color: #3c3c3c;
+  }
+}
+
+html, body, #root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--font-size-default);
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  /* NOTE: no idea why minmax(min-content, 0) does the job (it should be equal to min-content), but only with this setup an empty space on the left of the sidebar panel doesn't appear when resizing it */
+  grid-template-columns: auto minmax(min-content, 0);
+  grid-template-areas: 'header  header'
+                       'content sidebar';
+  height: 100%;
+  overflow: hidden;
+
+  & > header {
+    grid-area: header;
+    
+    background-color: var(--background-color);
+    z-index: 1;
+    
+    position: sticky;
+    top: 0;
+  }
+
+  & > main {
+    grid-area: content;
+    
+    container-type: inline-size;
+    container-name: main;
+    
+    overflow-y: auto;
+
+    position: relative;
+
+    &::before, &::after {
+      content: '';
+    }
+
+    &.loading {
+      &::before, &::after {
+        opacity: 1;
+        transition: opacity 0s ease-in;
+      }
+    }
+
+    &:not(.loading) {
+      &::before, &::after {
+        pointer-events: none;
+
+        opacity: 0;
+        transition: opacity .25s ease-out;
+      }
+    }
+
+    &::before {
+      height: var(--loading-spinner-size);
+      width: var(--loading-spinner-size);
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+
+      animation: loading 1s linear infinite;
+
+      border-radius: var(--loading-spinner-size);
+      border: var(--loading-spinner-thickness) solid var(--loading-spinner-color);
+      border-top-color: var(--loading-spinner-color-highlight);
+      opacity: 1;
+    }
+
+    &::after {
+      background-color: var(--loading-spinner-overlay-color);
+
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+  }
+
+  & > aside {
+    grid-area: sidebar;
+    max-width: 80vw;
+    min-width: 25vw;
+    justify-self: flex-end;
+    width: 60vw;
+    
+    resize: horizontal;
+    overflow: auto;
+    
+    background-color: var(--background-color-accent);
+    
+    direction: rtl;
+    & > * {
+      direction: ltr;
+    }
+    
+    &::webkit-resizer {
+      background-color: red;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

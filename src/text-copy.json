@@ -1,0 +1,69 @@
+{
+  "filters": {
+    "allTypes": "All",
+    "search": {
+      "placeholder": "Filter",
+      "clear": "Clear phrase"
+    },
+    "toggle": "Toggle filters"
+  },
+  "controls": {
+    "clearEvents": "Clear Events",
+    "preserveLog": "Preserve Log",
+    "recordActivity": "Record Activity"
+  },
+  "eventsList": {
+    "action": {
+      "iconAlt": "action",
+      "name": "action"
+    },
+    "columns": {
+      "overview": {
+        "header": "Overview"
+      },
+      "service": {
+        "header": "Service"
+      },
+      "sessionId": {
+        "header": "Session ID"
+      },
+      "relativeTime": {
+        "header": "Relative time"
+      }
+    },
+    "longTask": {
+      "iconAlt": "long task",
+      "name": "Long Task",
+      "unit": "ms"
+    },
+    "resource": {
+      "iconAlt": "resource",
+      "defaults": {
+        "renderBlockingStatus": "unknown",
+        "requestStatusCode": "unknown"
+      }
+    },
+    "unknown": {
+      "iconAlt": "unknown"
+    },
+    "view": {
+      "active": "active",
+      "iconAlt": "view",
+      "notActive": "not active"
+    },
+    "vital": {
+      "iconAlt": "vital"
+    }
+  },
+  "eventPreview": {
+    "close": "Close",
+    "unnamedEvent": "Unnamed Event"
+  },
+  "settings": {
+    "button": "Settings",
+    "title": "Configure extension settings",
+    "close": "Close",
+    "domain": "Target Domain",
+    "domainHint": "Provide a pure hostname without protocol"
+  }
+}
