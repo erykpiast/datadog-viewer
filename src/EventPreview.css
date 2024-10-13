@@ -1,0 +1,44 @@
+
+.event-preview {
+  & > header {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--spacing-3);
+    height: 2rem;
+    padding: 0 var(--spacing-3);
+    padding-right: 0;
+    
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
+    background-color: var(--background-color-accent);
+    border-bottom: 1px solid var( --table-border-color);
+    
+    & > h2 {
+      font-size: var(--font-size-big);
+
+      margin: var(--spacing-4) 0;
+      margin-right: auto;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+    
+    & > nav {
+      & > .close {
+        --icon-button-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYuMDYyIDE1IDUgMTMuOTM4IDguOTM4IDEwIDUgNi4wNjIgNi4wNjIgNSAxMCA4LjkzOCAxMy45MzggNSAxNSA2LjA2MiAxMS4wNjIgMTAgMTUgMTMuOTM4IDEzLjkzOCAxNSAxMCAxMS4wNjIgNi4wNjIgMTVaIiBmaWxsPSIjMDAwIi8+PC9zdmc+);
+      }
+    }
+  }
+  
+  & > main {
+    padding: var(--spacing-3);
+    
+    background-color: var(--background-color);
+  }
+}

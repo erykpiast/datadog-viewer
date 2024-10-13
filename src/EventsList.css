@@ -1,0 +1,158 @@
+.events-list {
+  border-top: 0 none transparent;
+  border-right: 1px solid var( --table-border-color);
+  
+  border-spacing: 0px;
+  border-collapse: separate;
+  empty-cells: show;
+  position: relative;
+  
+  min-height: 100%;
+  width: 100%;
+  
+  & > thead > tr > th,
+  & > tbody > tr > td {
+    border-left: 1px solid var( --table-border-color);
+    border-right: 0 none transparent;
+    border-top: 0 none transparent;
+
+    &:first-child {
+      border-left: 0;
+      
+      width: auto;
+    }
+    
+    padding: var(--spacing-1h) var(--spacing-2);
+  }
+  
+  & > thead {
+    text-align: left;
+    
+    & > tr > th {
+      box-sizing: border-box;
+      
+      height: 2rem;
+      
+      font-weight: 400;
+      
+      background-color: var(--background-color);
+      border-bottom: 1px solid var( --table-border-color);
+      
+      position: sticky;
+      top: 0;
+    }
+  }
+  
+  & > tbody {
+    & > tr {
+      &:nth-child(odd) {
+        background-color: var(--table-row-background-color-odd);
+      }
+      
+      &:nth-child(even), &:last-child {
+        background-color: var(--table-row-background-color-even);
+      }
+
+      &:hover {
+        background-color: var(--table-row-background-hover);
+      }
+
+      &.selected {
+        background-color: var(--table-row-background-selected);
+
+        &:focus {
+          background-color: var(--table-row-background-selected-focus);
+        }
+      }
+
+      &:focus-visible {
+        background-color: var(--table-row-background-selected-focus);
+
+        outline: none;
+      }
+      
+      &:last-child {
+        height: 100%;
+      }
+      
+      & > td {
+        height: 2.125rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  
+  .panel > header:has(.filters > .filter-pills > input[name=type][value=all]:not(:checked)) + main > & > tbody > tr:nth-child(n+5):not(:last-child) {
+    display: none;
+  }
+}
+
+@container main (width < 30ch) {
+  thead > tr > th,
+  tbody > tr > td {
+    &:nth-child(n+2) {
+      display: none;
+    }
+  }
+}
+
+@container main (width < 40ch) {
+  thead > tr > th,
+  tbody > tr > td {
+    &:nth-child(n+3) {
+      display: none;
+    }
+  }
+}
+
+@container main (width < 60ch) {
+  thead > tr > th,
+  tbody > tr > td {
+    &:nth-child(n+4) {
+      display: none;
+    }
+  }
+}
+        
+.event-overview {
+  align-items: center;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 'icon name'
+                       'icon details';
+
+  width: 100%;
+
+  figure {
+    grid-area: icon;
+    
+    margin: 0 var(--spacing-3);
+    margin-right: var(--spacing-4);
+    
+    & > img {
+      display: block;
+    }
+  }
+
+  h3 {
+    font-size: var(--font-size-default);
+
+    grid-area: name;
+
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  p {
+    grid-area: details;
+
+    margin: 0;
+
+    font-size: var(--font-size-small);
+  }
+}
