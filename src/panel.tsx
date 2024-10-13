@@ -41,7 +41,6 @@ export function DataDogEventMonitor() {
       startTransition(() => {
         setFilteredEvents(filtered);
       });
-      resetSelectedEvent();
     },
     []
   );
@@ -53,6 +52,7 @@ export function DataDogEventMonitor() {
         <Filters
           events={events}
           onFilteredEventsChange={handleFilteredEventsChange}
+          onFiltersChange={resetSelectedEvent}
         />
         <SettingsPanel />
       </header>
