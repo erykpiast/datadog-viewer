@@ -40,14 +40,18 @@ const FiltersPanelContext = createContext<{
 interface FiltersProps<TEvent> {
   events: Array<TEvent>;
   onFilteredEventsChange: (filteredEvents: Array<TEvent>) => void;
+  onFiltersChange: () => void;
 }
 
 export function Filters<TEvent extends { type: string }>({
   events,
   onFilteredEventsChange,
+  onFiltersChange,
 }: FiltersProps<TEvent>): JSX.Element {
   const [filter, setFilter] = useState<string>("");
-  const [selectedEventType, setSelectedEventType] = useState<string>("");
+  const [selectedEventType, setSelectedEventType] = useState<
+    TEvent["type"] | null
+  >(null);
 
   const eventTypes = useMemo(
     () =>
@@ -58,7 +62,7 @@ export function Filters<TEvent extends { type: string }>({
   useEffect(() => {
     let filteredEvents = events;
 
-    if (selectedEventType) {
+    if (selectedEventType !== null) {
       filteredEvents = filteredEvents.filter(
         (event) => event.type === selectedEventType
       );
@@ -69,9 +73,25 @@ export function Filters<TEvent extends { type: string }>({
     onFilteredEventsChange(filteredEvents);
   }, [events, filter, selectedEventType, onFilteredEventsChange]);
 
-  const clearSearch = () => {
+  const clearSearch = useCallback(() => {
     setFilter("");
-  };
+  }, []);
+
+  const handleSearchPhraseChange = useCallback(
+    ({ target: { value } }: { target: { value: string } }) => {
+      setFilter(value);
+      onFiltersChange();
+    },
+    [onFiltersChange]
+  );
+
+  const handleTypeFilterChange = useCallback(
+    ({ target: { value } }: { target: { value: TEvent["type"] | "" } }) => {
+      setSelectedEventType(value === "" ? null : value);
+      onFiltersChange();
+    },
+    [onFiltersChange]
+  );
 
   return (
     <form className="filters">
@@ -80,7 +100,7 @@ export function Filters<TEvent extends { type: string }>({
           {texts.filters.search.clear}
         </button>
         <input
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={handleSearchPhraseChange}
           placeholder={texts.filters.search.placeholder}
           type="search"
           value={filter}
@@ -88,11 +108,11 @@ export function Filters<TEvent extends { type: string }>({
       </fieldset>
       <fieldset className="filter-pills">
         <input
-          checked={selectedEventType === ""}
+          checked={selectedEventType === null}
           id="filter-type-all"
           key="filter-type-all-input"
           name="type"
-          onChange={() => setSelectedEventType("")}
+          onChange={handleTypeFilterChange}
           type="radio"
           value=""
         />
@@ -109,7 +129,7 @@ export function Filters<TEvent extends { type: string }>({
               name="type"
               value={eventType}
               checked={selectedEventType === eventType}
-              onChange={() => setSelectedEventType(eventType)}
+              onChange={handleTypeFilterChange}
             />
             <label htmlFor={`filter-type-${eventType}`}>{eventType}</label>
           </>
