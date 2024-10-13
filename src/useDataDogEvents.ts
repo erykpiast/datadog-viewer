@@ -78,6 +78,7 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
     const listener = () => {
       if (preserveLog === false) {
         clearEvents();
+        minTime.current = Infinity;
       }
     };
 
