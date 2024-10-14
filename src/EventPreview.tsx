@@ -1,10 +1,13 @@
-import ReactJson from "react-json-view";
+import { useState } from "react";
 
 import texts from "./text-copy.json" assert { type: "json" };
 
 import "./EventPreview.css";
 
 import { getEventName } from "./event";
+import { EventPreviewDetails } from "./EventPreviewDetails";
+import { EventPreviewOverview } from "./EventPreviewOverview";
+import { Tabs } from "./Tabs";
 
 interface EventPreviewProps {
   event: Parameters<typeof getEventName>[0];
@@ -16,28 +19,38 @@ export function EventPreview({
   onClose,
 }: EventPreviewProps): JSX.Element {
   const eventName = getEventName(event);
+  const [selectedTabId, setSelectedTabId] = useState("overview");
 
   return (
     <section className="event-preview">
       <header>
-        <h2>
-          {event.type}&nbsp;·&nbsp;{eventName}
-        </h2>
         <nav>
           <button className="icon-button close" onClick={onClose}>
             <span>{texts.eventPreview.close}</span>
           </button>
+          <Tabs
+            onTabChange={setSelectedTabId}
+            seletedTabId={selectedTabId}
+            tabs={[
+              {
+                id: "overview",
+                label: texts.eventPreview.tabs.overview.header,
+              },
+              {
+                id: "details",
+                label: texts.eventPreview.tabs.details.header,
+              },
+            ]}
+          />
         </nav>
       </header>
       <main>
-        <ReactJson
-          src={event}
-          collapsed={1}
-          theme="tomorrow"
-          enableClipboard={false}
-          displayDataTypes={false}
-          indentWidth={2}
-        />
+        {selectedTabId === "overview" ? (
+          <EventPreviewOverview className="tab-overview" event={event} />
+        ) : null}
+        {selectedTabId === "details" ? (
+          <EventPreviewDetails className="tab-details" event={event} />
+        ) : null}
       </main>
     </section>
   );

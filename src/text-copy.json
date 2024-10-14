@@ -57,7 +57,87 @@
   },
   "eventPreview": {
     "close": "Close",
-    "unnamedEvent": "Unnamed Event"
+    "tabs": {
+      "overview": {
+        "action": {
+          "targetName": "Target Name",
+          "type": "Type"
+        },
+        "domComplete": { "label": "DOM Complete", "unit": "ms" },
+        "domContentLoaded": { "label": "DOM Content Loaded", "unit": "ms" },
+        "domInteractive": { "label": "DOM Interactive", "unit": "ms" },
+        "eventName": "Name",
+        "firstByte": { "label": "First Byte", "unit": "ms" },
+        "firstContentfulPaint": {
+          "label": "First Contentful Paint",
+          "unit": "ms"
+        },
+        "header": "Overview",
+        "loadingTime": { "label": "Loading Time", "unit": "ms" },
+        "loadingType": "Loading type",
+        "longTask": {
+          "duration": {
+            "label": "Duration",
+            "missing": "unknown",
+            "unit": "ms"
+          }
+        },
+        "resource": {
+          "duration": {
+            "label": "Duration",
+            "missing": "unknown",
+            "unit": "ms"
+          },
+          "renderBlockingStatus": "Render Blocking Status",
+          "sizes": {
+            "encodedBodySize": {
+              "label": "Encoded Body Size",
+              "missing": "unknown",
+              "unit": "kB"
+            },
+            "decodedBodySize": {
+              "label": "Decoded Body Size",
+              "missing": "unknown",
+              "unit": "kB"
+            },
+            "size": {
+              "label": "Size",
+              "missing": "unknown",
+              "unit": "kB"
+            },
+            "transferSize": {
+              "label": "Transfer Size",
+              "missing": "unknown",
+              "unit": "kB"
+            }
+          },
+          "statusCode": {
+            "label": "Status Code",
+            "missing": "unknown"
+          },
+          "type": "Type",
+          "url": "URL"
+        },
+        "sections": {
+          "general": "General",
+          "performance": "Performance",
+          "resourceSizes": "Sizes"
+        },
+        "url": "URL",
+        "vital": {
+          "description": "Description",
+          "duration": {
+            "label": "Duration",
+            "unit": "ms"
+          },
+          "name": "Name",
+          "type": "Type"
+        }
+      },
+      "details": {
+        "header": "Details"
+      }
+    }
   },
   "settings": {
     "button": "Settings",

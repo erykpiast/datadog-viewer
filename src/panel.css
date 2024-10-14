@@ -49,6 +49,12 @@
   --pill-padding-vertical: var(--spacing-1h);
   --pill-padding-horizontal: var(--spacing-3);
   
+  --tab-active-text-color: #a8c7fa;
+  --tab-active-border-color: #a8c7fa;
+  --tab-active-background-color: var(--overlay-color-light);
+  
+  --accordion-border-color: #5e5e5e;
+  
   --divider-color: #5e5e5eff;
   --divider-width: 1px;
   --divider-margin-horizontal: var(--pill-margin);
@@ -56,19 +62,24 @@
   
   --spacing-0h: .0625rem;
   --spacing-1: .125rem;
-  --spacing-1h: calc(var(--spacing-1) * 1.5);
+  --spacing-1h: calc(var(--spacing-1) + var(--spacing-0h));
   --spacing-2: calc(var(--spacing-1) * 2);
+  --spacing-2h: calc(var(--spacing-2) + var(--spacing-0h));
   --spacing-3: calc(var(--spacing-1) * 3);
   --spacing-4: calc(var(--spacing-1) * 4);
+  --spacing-4h: calc(var(--spacing-4) + var(--spacing-0h));
+  --spacing-5: calc(var(--spacing-1) * 5);
   
   --table-row-background-color-even: #1f1f1f;
   --table-row-background-color-odd: #28292a;
   --table-row-background-selected: #444746;
   --table-row-background-selected-focus: #004a77;
   --table-row-background-hover: var(--overlay-color-light);
-  --table-border-color: #5e5e5eff;
+  --table-border-color: #5e5e5e;
   
   --panel-height: calc(1.625rem + 1px);
+  
+  --json-view-line-hover-background-color: #3d3d3d;
 }
 
 @media (prefers-color-scheme: dark) {

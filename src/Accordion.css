@@ -1,0 +1,7 @@
+details.accordion {
+  & > summary {
+    padding: var(--spacing-3) var(--spacing-2h);
+
+    border-bottom: 1px solid var(--accordion-border-color);
+  }
+}

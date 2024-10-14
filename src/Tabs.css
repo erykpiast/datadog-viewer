@@ -1,0 +1,65 @@
+.tabs {
+  align-self: stretch;
+  margin-left: var(--spacing-2);
+  margin-top: var(--spacing-2);
+
+  & > ul {
+    display: flex;
+    height: 100%;
+    padding: 0;
+
+    margin: 0;
+
+    & > li {
+      list-style-type: none;
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+    overflow: hidden;
+
+    height: 0;
+    width: 0;
+
+    & + label {
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      height: 100%;
+      padding: var(--spacing-0h) var(--spacing-5);
+
+      position: relative;
+
+      &:hover {
+        background-color: var(--tab-active-background-color);
+      }
+
+      &::after {
+        content: "";
+
+        height: var(--spacing-1);
+
+        background-color: var(--tab-active-border-color);
+
+        bottom: 0;
+        left: 50%;
+        position: absolute;
+        right: 50%;
+
+        transition: .15s ease-in-out;
+        transition-property: left, right;
+      }
+    }
+
+    &:checked + label {
+      background-color: var(--tab-active-background-color);
+      color: var(--tab-active-text-color);
+
+      &:after {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+}
