@@ -1,5 +1,5 @@
 .event-preview-details {
-  padding: var(--spacing-1) var(--spacing-3);
+  padding: var(--spacing-3);
   
   header:has(nav input[type=radio][value="details"]:not(:checked)) + main > & {
     display: none;
