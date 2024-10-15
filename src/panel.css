@@ -1,9 +1,11 @@
 :root {
-  --background-color: #ffffff;
-  --background-color-accent: #282828;
-  --text-color: #000000;
+  --background-color: #282828;
+  --background-color-dark: #1f1f1f;
+  --background-color-light: #3c3c3c;
+  --border-color: #5e5e5e;
   --overlay-color: color-mix(in sRGB, #fdfcfb 16%, transparent);
   --overlay-color-light: color-mix(in sRGB, #fdfcfb 10%, transparent);
+  --text-color: #c7c7c7ff;
 
   --loading-spinner-overlay-color: var(--overlay-color);
   --loading-spinner-color: #a8c7fa;
@@ -15,8 +17,8 @@
   --font-size-small: 11px;
   --font-size-big: 14px;
   
-  --border-color: #ccc;
-  --border-hover-color: var(--text-color);
+  --border-color: #555;
+  --border-hover-color: #999;
   --border-hover-color: #999;
   --border-focus-color: #0078d7;
 
@@ -36,7 +38,7 @@
   --input-text-height: 1.25rem;
   --input-color: #e3e3e3ff;
   --input-checkbox-size: .75rem;
-  --input-background-color: var(--background-color-accent);
+  --input-background-color: var(--background-color-light);
   --input-hover-background-color: #4f4f4f;
   --input-border-color: #757575ff;
   --input-focus-border-color: #a8c7fa;
@@ -53,9 +55,9 @@
   --tab-active-border-color: #a8c7fa;
   --tab-active-background-color: var(--overlay-color-light);
   
-  --accordion-border-color: #5e5e5e;
+  --accordion-border-color: var(--border-color);
   
-  --divider-color: #5e5e5eff;
+  --divider-color: var(--border-color);
   --divider-width: 1px;
   --divider-margin-horizontal: var(--pill-margin);
   --divider-margin-vertical: var(--spacing-2);
@@ -70,12 +72,12 @@
   --spacing-4h: calc(var(--spacing-4) + var(--spacing-0h));
   --spacing-5: calc(var(--spacing-1) * 5);
   
-  --table-row-background-color-even: #1f1f1f;
+  --table-row-background-color-even: var(--background-color-dark);
   --table-row-background-color-odd: #28292a;
   --table-row-background-selected: #444746;
   --table-row-background-selected-focus: #004a77;
   --table-row-background-hover: var(--overlay-color-light);
-  --table-border-color: #5e5e5e;
+  --table-border-color: var(--border-color);
   
   --panel-height: calc(1.625rem + 1px);
   
@@ -203,7 +205,7 @@ body {
     resize: horizontal;
     overflow: auto;
     
-    background-color: var(--background-color-accent);
+    background-color: var(--background-color);
     
     direction: rtl;
     & > * {
