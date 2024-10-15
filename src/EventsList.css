@@ -45,6 +45,14 @@
       &:hover {
         background-color: var(--table-header-background-color-hover);
       }
+
+      & > div {
+        display: flex;
+
+        & > svg {
+          margin-left: auto;
+        }
+      }
     }
   }
   
