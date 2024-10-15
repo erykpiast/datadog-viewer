@@ -2,10 +2,12 @@
   --background-color: #282828;
   --background-color-dark: #1f1f1f;
   --background-color-light: #3c3c3c;
+  --background-color-lighter: #28292a;
   --border-color: #5e5e5e;
   --overlay-color: color-mix(in sRGB, #fdfcfb 16%, transparent);
   --overlay-color-light: color-mix(in sRGB, #fdfcfb 10%, transparent);
-  --text-color: #c7c7c7ff;
+  --text-color: #c7c7c7;
+  --text-color-light: #e3e3e3;
 
   --loading-spinner-overlay-color: var(--overlay-color);
   --loading-spinner-color: #a8c7fa;
@@ -16,14 +18,7 @@
   --font-size-default: 12px;
   --font-size-small: 11px;
   --font-size-big: 14px;
-  
-  --border-color: #555;
-  --border-hover-color: #999;
-  --border-hover-color: #999;
-  --border-focus-color: #0078d7;
 
-  --button-color: #666;
-  --button-background-color: #f0f0f0;
   --button-size: 1.5rem;
   --button-active-highlight-color: var(--overlay-color);
   
@@ -31,22 +26,21 @@
   --icon-size-small: 1rem;
   --icon-color: #c7c7c7;
   --icon-highlight-color: var(--overlay-color-light);
-  --icon-toggle-color: #7cacf8ff;
+  --icon-toggle-color: #7cacf8;
   --icon-toggle-color-stop: #e46962;
   
-  --input-placeholder-color: #999;
   --input-text-height: 1.25rem;
-  --input-color: #e3e3e3ff;
+  --input-color: var(--text-color-light);
   --input-checkbox-size: .75rem;
   --input-background-color: var(--background-color-light);
   --input-hover-background-color: #4f4f4f;
-  --input-border-color: #757575ff;
+  --input-border-color: #757575;
   --input-focus-border-color: #a8c7fa;
   
-  --pill-text-color: #e3e3e3ff;
-  --pill-border-color: #757575ff;
-  --pill-checked-background-color: #004a77ff;
-  --pill-checked-text-color: #c2e7ffff;
+  --pill-text-color: var(--text-color-light);
+  --pill-border-color: #757575;
+  --pill-checked-background-color: #004a77;
+  --pill-checked-text-color: #c2e7ff;
   --pill-margin: var(--spacing-1);
   --pill-padding-vertical: var(--spacing-1h);
   --pill-padding-horizontal: var(--spacing-3);
@@ -54,6 +48,7 @@
   --tab-active-text-color: #a8c7fa;
   --tab-active-border-color: #a8c7fa;
   --tab-active-background-color: var(--overlay-color-light);
+  --tab-hover-background-color: var(--overlay-color-light);
   
   --accordion-border-color: var(--border-color);
   
@@ -71,9 +66,11 @@
   --spacing-4: calc(var(--spacing-1) * 4);
   --spacing-4h: calc(var(--spacing-4) + var(--spacing-0h));
   --spacing-5: calc(var(--spacing-1) * 5);
-  
+
+  --table-header-background-color: var(--background-color-lighter);
+  --table-header-background-color-hover: var(--overlay-color-light);
   --table-row-background-color-even: var(--background-color-dark);
-  --table-row-background-color-odd: #28292a;
+  --table-row-background-color-odd: var(--background-color-lighter);
   --table-row-background-selected: #444746;
   --table-row-background-selected-focus: #004a77;
   --table-row-background-hover: var(--overlay-color-light);
@@ -84,18 +81,56 @@
   --json-view-line-hover-background-color: #3d3d3d;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background-color: #1e1e1e;
-    --text-color: #c7c7c7ff;
+    --background-color: #ffffff;
+    --background-color-dark: #f8f9fd;
+    --background-color-light: #edf2fa;
+    --background-color-lighter: #f8f9fd;
+    --border-color: #d3e2fd;
+    --overlay-color: color-mix(in sRGB, #1f1f1f 8%, transparent);
+    --overlay-color-light: color-mix(in sRGB, #1f1f1f 6%, transparent);
+    --text-color: #1f1f1f;
+    --text-color-light: #1f1f1f;
+
+    --loading-spinner-color: #a8c7fa;
+    --loading-spinner-color-highlight: rgb(124, 172, 248);
     
-    --border-color: #555;
-    --border-hover-color: #999;
+    --icon-color: #474747;
+    --icon-toggle-color: #1c6ef3;
+    --icon-toggle-color-stop: #dc362e;
     
-    --button-background-color: #f0f0f0;
+    --input-color: var(--text-color-light);
+    --input-background-color: var(--background-color-light);
+    --input-hover-background-color: #e1e5ed;
+    --input-border-color: #757575;
+    --input-focus-border-color: #015fcc;
     
-    --input-placeholder-color: #999;
-    --input-background-color: #3c3c3c;
+    --pill-text-color: var(--text-color-light);
+    --pill-border-color: #c7c7c7;
+    --pill-checked-background-color: #d3e2fd;
+    --pill-checked-text-color: #041e49;
+    
+    --tab-active-text-color: #0b57d0;
+    --tab-active-border-color: #1c6ef3;
+    --tab-active-background-color: var(--background-color-light);
+    --tab-hover-background-color: var(--background-color-light);
+    
+    --accordion-summary-background-color: var(--background-color-lighter);
+    --accordion-border-color: var(--border-color);
+    
+    --divider-color: var(--border-color);
+    
+    --table-header-background-color: var(--background-color-dark);
+    --table-header-background-color-hover: var(--overlay-color-light);
+    --table-row-background-color-even: var(--background-color-dark);
+    --table-row-background-color-odd: var(--background-color);
+    --table-row-background-selected: #e1e3e1;
+    --table-row-background-selected-focus: #d3e3fd;
+    --table-row-background-hover: var(--overlay-color-light);
+    --table-border-color: var(--border-color);
+    
+    --json-view-line-hover-background-color: #3d3d3d;
   }
 }
 
