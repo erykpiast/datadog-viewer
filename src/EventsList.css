@@ -36,11 +36,15 @@
       font-weight: 400;
       white-space: nowrap;
       
-      background-color: var(--background-color);
+      background-color: var(--table-header-background-color);
       border-bottom: 1px solid var( --table-border-color);
       
       position: sticky;
       top: 0;
+
+      &:hover {
+        background-color: var(--table-header-background-color-hover);
+      }
     }
   }
   
