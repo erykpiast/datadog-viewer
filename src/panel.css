@@ -77,8 +77,6 @@
   --table-border-color: var(--border-color);
   
   --panel-height: calc(1.625rem + 1px);
-  
-  --json-view-line-hover-background-color: #3d3d3d;
 }
 
 @media (prefers-color-scheme: light) {
@@ -129,8 +127,6 @@
     --table-row-background-selected-focus: #d3e3fd;
     --table-row-background-hover: var(--overlay-color-light);
     --table-border-color: var(--border-color);
-    
-    --json-view-line-hover-background-color: #3d3d3d;
   }
 }
 
