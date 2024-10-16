@@ -4,13 +4,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 0.0.1 (2024-10-16)
 
-
 ### Features
 
 * add tabs to event preview ([d6f7bd6](https://github-personal/erykpiast/datadog-viewer/commit/d6f7bd61dc13bd67abf01a03f8ed4d75dbe92382))
 * implement MVP ([3b41d46](https://github-personal/erykpiast/datadog-viewer/commit/3b41d46906612f95c2fb83687dee1e215ff6faed))
 * support light color theme ([84a207d](https://github-personal/erykpiast/datadog-viewer/commit/84a207dfef4d34b67189ce8f3b3fec1eccbec859))
-
 
 ### Bug Fixes
 
