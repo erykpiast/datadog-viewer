@@ -13,17 +13,95 @@ import texts from "./text-copy.json" assert { type: "json" };
 import "./Filters.css";
 import { ToggleButton } from "./ToggleButton";
 
-function filterEvents<T extends { type: string }>(
-  events: Array<T>,
+type FilterableEvent = {
+  service: string;
+} & (
+  | {
+      type: "view";
+      view: {
+        name: string;
+        url: string;
+      };
+    }
+  | {
+      type: "action";
+      action: { target: { name: string }; type: string };
+    }
+  | {
+      type: "resource";
+      resource: {
+        name: string;
+        render_blocking_status: string;
+        type:
+          | "binary"
+          | "css"
+          | "fetch"
+          | "font"
+          | "document"
+          | "image"
+          | "js"
+          | "other"
+          | "video"
+          | "xhr";
+        url: string;
+      };
+    }
+  | {
+      type: "vital";
+      vital: {
+        name: string;
+        description: string;
+        type: string;
+      };
+    }
+  | {
+      type: "long_task";
+      long_task: {};
+    }
+);
+
+function filterEvents<TEvent extends FilterableEvent>(
+  events: Array<TEvent>,
   filter: string
-): Array<T> {
+): Array<TEvent> {
   if (!filter) {
     return events;
   }
 
   const fuse = new Fuse(events, {
+    keys: [
+      "service",
+      {
+        name: "view.name",
+        weight: 0.5,
+      },
+      {
+        name: "view.url",
+        weight: 0.3,
+      },
+      {
+        name: "action.target.name",
+        weight: 0.5,
+      },
+      {
+        name: "resource.name",
+        weight: 0.5,
+      },
+      {
+        name: "resource.url",
+        weight: 0.3,
+      },
+      {
+        name: "vital.name",
+        weight: 0.5,
+      },
+      {
+        name: "vital.description",
+        weight: 0.3,
+      },
+    ],
+    includeScore: true,
     threshold: 0.4,
-    keys: ["type"],
   });
 
   return fuse.search(filter).map((result) => result.item);
@@ -43,14 +121,14 @@ interface FiltersProps<TEvent> {
   onFiltersChange: () => void;
 }
 
-export function Filters<TEvent extends { type: string }>({
+export function Filters<TEvent extends FilterableEvent>({
   events,
   onFilteredEventsChange,
   onFiltersChange,
 }: FiltersProps<TEvent>): JSX.Element {
   const [filter, setFilter] = useState<string>("");
   const [selectedEventType, setSelectedEventType] = useState<
-    TEvent["type"] | null
+    FilterableEvent["type"] | null
   >(null);
 
   const eventTypes = useMemo(
@@ -86,9 +164,21 @@ export function Filters<TEvent extends { type: string }>({
   );
 
   const handleTypeFilterChange = useCallback(
-    ({ target: { value } }: { target: { value: TEvent["type"] | "" } }) => {
-      setSelectedEventType(value === "" ? null : value);
-      onFiltersChange();
+    ({ target: { value } }: { target: { value: string | "" } }) => {
+      if (
+        value === "view" ||
+        value === "action" ||
+        value === "resource" ||
+        value === "vital" ||
+        value === "long_task"
+      ) {
+        setSelectedEventType(value);
+        onFiltersChange();
+        return;
+      } else if (value === "") {
+        setSelectedEventType(null);
+        onFiltersChange();
+      }
     },
     [onFiltersChange]
   );
