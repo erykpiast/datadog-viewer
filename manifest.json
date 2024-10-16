@@ -1,6 +1,6 @@
 {
   "name": "DataDog Event Monitor",
-  "version": "1.0",
+  "version": "0.0.1",
   "manifest_version": 3,
   "description": "Monitors network requests and displays DataDog events in DevTools.",
   "devtools_page": "src/index.html",
