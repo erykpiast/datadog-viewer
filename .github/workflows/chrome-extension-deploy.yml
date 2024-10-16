@@ -1,0 +1,56 @@
+name: Chrome Extension Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Deploy Chrome Extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.6.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Set up git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run release script
+        run: |
+          pnpm release
+          git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build extension
+        run: pnpm build
+
+      - name: Zip the extension
+        run: zip -r extension.zip dist
+
+      - name: Upload & release
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: dist/extension.zip
+          extension-id: hogefuga(extension id)
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
