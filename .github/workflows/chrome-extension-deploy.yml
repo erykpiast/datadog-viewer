@@ -1,0 +1,79 @@
+name: Chrome Extension Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Bump version and release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: wyvox/action-setup-pnpm@v3
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Set up git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run release script
+        run: |
+          pnpm release
+          git push --follow-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: Build and pack
+    runs-on: ubuntu-latest
+    needs:
+      - release
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: wyvox/action-setup-pnpm@v3
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Build extension
+        run: pnpm build
+
+      - name: Zip the extension
+        run: zip -r extension.zip dist
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension
+          path: extension.zip
+
+  upload_and_publish:
+    name: Upload & publish
+    runs-on: ubuntu-latest
+    needs:
+      - build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: extension
+          path: .
+
+      - name: Upload & release the extension
+        uses: mnao305/chrome-extension-upload@v5.0.0
+        with:
+          file-path: extension.zip
+          extension-id: cbmkpmahhohcoocponpomeegpdlhlmim
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}

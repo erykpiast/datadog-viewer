@@ -16,19 +16,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: wyvox/action-setup-pnpm@v3
         with:
-          node-version: 20.6.0
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Use pnpm
-        run: corepack prepare pnpm@latest --activate
-
-      - name: Install dependencies
-        run: pnpm install
+          node-version-file: ".nvmrc"
 
       - name: Run linting
         run: pnpm lint
@@ -40,19 +30,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: wyvox/action-setup-pnpm@v3
         with:
-          node-version: 20.6.0
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Use pnpm
-        run: corepack prepare pnpm@latest --activate
-
-      - name: Install dependencies
-        run: pnpm install
+          node-version-file: ".nvmrc"
 
       - name: Run type-check
         run: pnpm type-check
@@ -64,19 +44,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: wyvox/action-setup-pnpm@v3
         with:
-          node-version: 20.6.0
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Use pnpm
-        run: corepack prepare pnpm@latest --activate
-
-      - name: Install dependencies
-        run: pnpm install
+          node-version-file: ".nvmrc"
 
       - name: Build project
         run: pnpm build
