@@ -1,6 +1,5 @@
 .events-list {
   border-top: 0 none transparent;
-  border-right: 1px solid var( --table-border-color);
   
   border-spacing: 0px;
   border-collapse: separate;
@@ -20,6 +19,10 @@
       border-left: 0;
       
       width: auto;
+    }
+
+    &:last-child {
+      border-right: 0;
     }
     
     padding: var(--spacing-1h) var(--spacing-2);
@@ -146,6 +149,10 @@
 @container main (width < 30ch) {
   thead > tr > th,
   tbody > tr > td {
+    &:nth-child(n+1) {
+      border-right: 0;
+    }
+
     &:nth-child(n+2) {
       display: none;
     }
@@ -155,6 +162,10 @@
 @container main (width < 40ch) {
   thead > tr > th,
   tbody > tr > td {
+    &:nth-child(n+2) {
+      border-right: 0;
+    }
+
     &:nth-child(n+3) {
       display: none;
     }
@@ -164,6 +175,10 @@
 @container main (width < 60ch) {
   thead > tr > th,
   tbody > tr > td {
+    &:nth-child(n+3) {
+      border-right: 0;
+    }
+
     &:nth-child(n+4) {
       display: none;
     }
