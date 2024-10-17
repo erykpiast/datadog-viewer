@@ -48,6 +48,6 @@ export function getEventName(event: Event) {
       return `${event.long_task.duration / 1_000_000}
         ${texts.eventsList.longTask.unit}`;
     default:
-      return texts.eventPreview.unnamedEvent;
+      return texts.eventPreview.unnamed;
   }
 }

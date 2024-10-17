@@ -5,6 +5,7 @@ export const DomainContext = createContext<{
   setDomain: (newDomain: string) => void;
 }>({
   domain: null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setDomain: (_newDomain: string) => {},
 });
 
@@ -20,10 +21,12 @@ export function DomainContextWrapper({
       return;
     }
 
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.set({ domain });
   }, [domain]);
 
   useEffect(() => {
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.get("domain", ({ domain }: { domain: string }) => {
       setDomain(domain);
     });

@@ -47,10 +47,12 @@ export function RecordActivityContextWrapper({
       return;
     }
 
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.set({ isRecording });
   }, [setIsRecording, isRecording]);
 
   useEffect(() => {
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.get(
       "isRecording",
       ({ isRecording }: { isRecording: boolean }) => {

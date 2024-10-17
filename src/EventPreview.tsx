@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { type ComponentProps, useState } from "react";
 
 import texts from "./text-copy.json" assert { type: "json" };
 
 import "./EventPreview.css";
 
-import { getEventName } from "./event";
 import { EventPreviewDetails } from "./EventPreviewDetails";
 import { EventPreviewOverview } from "./EventPreviewOverview";
 import { Tabs } from "./Tabs";
 
 interface EventPreviewProps {
-  event: Parameters<typeof getEventName>[0];
+  event: ComponentProps<typeof EventPreviewOverview>["event"] &
+    ComponentProps<typeof EventPreviewOverview>["event"];
   onClose: () => void;
 }
 
@@ -18,7 +18,6 @@ export function EventPreview({
   event,
   onClose,
 }: EventPreviewProps): JSX.Element {
-  const eventName = getEventName(event);
   const [selectedTabId, setSelectedTabId] = useState("overview");
 
   return (

@@ -8,7 +8,7 @@ export function EventPreviewDetails({
   event,
 }: {
   className: string;
-  event: any;
+  event: object;
 }): JSX.Element {
   const theme = useTheme({
     dark: "tomorrow",

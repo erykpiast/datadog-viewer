@@ -99,7 +99,7 @@ export function EventsList({
             case "action":
               return <ActionEventOverview event={row} name={name} />;
             case "long_task":
-              return <LongTaskEventOverview event={row} name={name} />;
+              return <LongTaskEventOverview name={name} />;
             case "view":
               return <ViewEventOverview event={row} name={name} />;
             case "resource":
