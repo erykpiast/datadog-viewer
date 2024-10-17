@@ -11,6 +11,8 @@
     box-sizing: border-box;
     height: var(--input-text-height);
     padding: var(--spacing-1h) var(--spacing-3);
+
+    margin-left: var(--spacing-2);
     
     background-color: var(--input-background-color);
     border: 1px solid var(--input-border-color);
