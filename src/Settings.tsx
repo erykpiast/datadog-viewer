@@ -43,6 +43,7 @@ export function SettingsPanel(): JSX.Element | null {
         id="domain"
         onChange={handleDomainChange}
         pattern="^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$"
+        placeholder={texts.settings.domainPlaceholder}
         title={texts.settings.domainHint}
         type="text"
         value={domain ?? ""}

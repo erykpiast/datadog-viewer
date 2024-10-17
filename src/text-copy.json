@@ -144,6 +144,7 @@
     "title": "Configure extension settings",
     "close": "Close",
     "domain": "Target Domain",
-    "domainHint": "Provide a pure hostname without protocol"
+    "domainHint": "Provide a pure hostname without protocol",
+    "domainPlaceholder": "e.g. browser-intake-datadoghq.eu"
   }
 }
