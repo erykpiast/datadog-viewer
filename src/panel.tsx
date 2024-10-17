@@ -72,7 +72,6 @@ export function DataDogEventMonitor() {
   );
 }
 
-// eslint-disable-next-line no-restricted-syntax
 window.addEventListener("load", () => {
   const root = document.getElementById("root");
   if (root) {

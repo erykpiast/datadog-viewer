@@ -4,7 +4,7 @@
 
 export namespace Chrome {
   export namespace DevTools {
-    export interface EventSink<ListenerT extends (...args: any) => void> {
+    export interface EventSink<ListenerT extends (...args: unknown) => void> {
       addListener(listener: ListenerT): void;
       removeListener(listener: ListenerT): void;
     }
@@ -18,7 +18,7 @@ export namespace Chrome {
       setContent(
         content: string,
         commit: boolean,
-        callback?: (error?: Object) => unknown
+        callback?: (error?: object) => unknown
       ): void;
     }
 
@@ -202,11 +202,12 @@ export namespace Chrome {
       | RecorderExtensionReplayPlugin;
 
     export interface RecorderExtensionExportPlugin {
-      stringify(recording: Record<string, any>): Promise<string>;
-      stringifyStep(step: Record<string, any>): Promise<string>;
+      
+      stringify(recording: Record<string, unknown>): Promise<string>;
+      stringifyStep(step: Record<string, unknown>): Promise<string>;
     }
     export interface RecorderExtensionReplayPlugin {
-      replay(recording: Record<string, any>): void;
+      replay(recording: Record<string, unknown>): void;
     }
 
     export type RemoteObjectId = string;
@@ -223,7 +224,7 @@ export namespace Chrome {
     export interface RemoteObject {
       type: RemoteObjectType;
       className?: string;
-      value?: any;
+      value?: unknown;
       description?: string;
       objectId?: RemoteObjectId;
       linearMemoryAddress?: number;
