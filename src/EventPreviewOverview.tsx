@@ -1,3 +1,5 @@
+import { type ComponentProps } from "react";
+
 import "./EventPreviewOverview.css";
 
 import * as texts from "./text-copy.json" assert { type: "json" };
@@ -10,8 +12,8 @@ function ActionEventOverview({
   event: {
     action: {
       target: {
-        name: string
-      },
+        name: string;
+      };
       type: string;
     };
   };
@@ -257,7 +259,7 @@ function VitalEventOverview({
     vital: {
       description: string;
       duration?: number;
-      name: number;
+      name: string;
       type: string;
     };
   };
@@ -291,13 +293,20 @@ export function EventPreviewOverview({
   event,
 }: {
   className: string;
-  event: any;
+  event:
+    | (ComponentProps<typeof ActionEventOverview>["event"] & { type: "action" })
+    | (ComponentProps<typeof LongTaskEventOverview>["event"] & {
+        type: "long_task";
+      })
+    | (ComponentProps<typeof ResourceEventOverview>["event"] & {
+        type: "resource";
+      })
+    | (ComponentProps<typeof ViewEventOverview>["event"] & { type: "view" })
+    | (ComponentProps<typeof VitalEventOverview>["event"] & { type: "vital" });
 }): JSX.Element {
   return (
     <section className={`${className} event-preview-overview`}>
-      {event.type === "action" ? (
-        <ActionEventOverview event={event} />
-      ) : null}
+      {event.type === "action" ? <ActionEventOverview event={event} /> : null}
       {event.type === "long_task" ? (
         <LongTaskEventOverview event={event} />
       ) : null}

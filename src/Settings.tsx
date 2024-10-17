@@ -81,10 +81,12 @@ export function SettingsPanelWrapper({
       return;
     }
 
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.set({ areSettingsVisible });
   }, [setAreSettingsVisible, areSettingsVisible]);
 
   useEffect(() => {
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.get(
       "areSettingsVisible",
       ({ areSettingsVisible }: { areSettingsVisible: boolean }) => {

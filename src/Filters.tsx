@@ -56,7 +56,6 @@ type FilterableEvent = {
     }
   | {
       type: "long_task";
-      long_task: {};
     }
 );
 
@@ -258,10 +257,12 @@ export function FiltersPanelWrapper({
       return;
     }
 
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.set({ areFiltersVisible });
   }, [setAreFiltersVisible, areFiltersVisible]);
 
   useEffect(() => {
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.get(
       "areFiltersVisible",
       ({ areFiltersVisible }: { areFiltersVisible: boolean }) => {

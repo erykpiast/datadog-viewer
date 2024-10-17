@@ -2,13 +2,7 @@ import texts from "./text-copy.json" assert { type: "json" };
 
 import icon from "./icons/long-task.svg";
 
-export function LongTaskEventOverview({
-  event,
-  name,
-}: {
-  event: { long_task: { duration: number } };
-  name: string;
-}): JSX.Element {
+export function LongTaskEventOverview({ name }: { name: string }): JSX.Element {
   return (
     <div className="event-overview">
       <figure>

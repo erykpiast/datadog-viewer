@@ -56,11 +56,11 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
       setEvents((prev) => [...prev, ...newEvents]);
     };
 
-    /* @ts-expect-error */
+    /* @ts-expect-error TODO: type chrome interface properly */
     window.chrome.devtools.network.onRequestFinished.addListener(listener);
 
     return () => {
-      /* @ts-expect-error */
+      /* @ts-expect-error TODO: type chrome interface properly */
       window.chrome.devtools.network.onRequestFinished.removeListener(listener);
     };
   }, [domain, isRecording]);

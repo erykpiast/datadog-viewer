@@ -46,10 +46,12 @@ export function PreserveLogToggleContextWrapper({
       return;
     }
 
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.set({ preserveLog });
   }, [setPreserveLog, preserveLog]);
 
   useEffect(() => {
+    /* @ts-expect-error TODO: type chrome interface properly */
     chrome.storage.sync.get(
       "preserveLog",
       ({ preserveLog }: { preserveLog: boolean }) => {
