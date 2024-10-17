@@ -71,7 +71,7 @@ We welcome contributions! Please follow these steps to contribute:
    Please, **always** explain why you're making this change.
 
     ```bash
-    git commit -m "fix: improve serch results quality
+    git commit -m "fix: improve search results quality
     
     Setting Fuse threshold to 0.4 gives overall better results - tested empirically.
     "
