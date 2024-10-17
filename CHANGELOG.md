@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.4 (2024-10-17)
+
+
+### Bug Fixes
+
+* left border of the event preview sidebar ([838db49](https://github.com/erykpiast/datadog-viewer/commit/838db49c8a92ce39e1b5d536681ee33ed7e53278))
+
 ### 1.0.3 (2024-10-17)
 
 ### 1.0.2 (2024-10-17)
