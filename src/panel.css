@@ -237,7 +237,8 @@ body {
     overflow: auto;
     
     background-color: var(--background-color);
-    
+    border-left: 1px solid var(--border-color);
+
     direction: rtl;
     & > * {
       direction: ltr;
