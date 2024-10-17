@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.6.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run linting
+        run: pnpm lint
+
+  type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.6.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run type-check
+        run: pnpm type-check
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.6.0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Use pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
