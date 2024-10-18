@@ -39,8 +39,6 @@ jobs:
             ~/.pnpm-store
             node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-
 
   release:
     name: Bump version and release
@@ -59,8 +57,6 @@ jobs:
             ~/.pnpm-store
             node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node
 
       - name: Set up git
         run: |
@@ -93,8 +89,6 @@ jobs:
             ~/.pnpm-store
             node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node
 
       - name: Build extension
         run: pnpm build
