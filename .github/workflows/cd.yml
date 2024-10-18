@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Deploy Chrome Extension
+  setup:
+    name: Setup environment
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+  release:
+    name: Bump version & release
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
       - name: Set up git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -40,13 +46,41 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  build:
+    name: Bump version & release
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+      - release
+
+    steps:
       - name: Build extension
         run: pnpm build
 
       - name: Zip the extension
         run: zip -r extension.zip dist
 
-      - name: Upload & release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: extension
+          path: extension.zip
+
+  upload_and_publish:
+    name: Upload & publish
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+      - build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: extension
+          path: .
+
+      - name: Upload & release the extension
         uses: mnao305/chrome-extension-upload@v5.0.0
         with:
           file-path: extension.zip
