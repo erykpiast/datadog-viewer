@@ -28,12 +28,34 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Cache Node.js, PNPM, and dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.nvm
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-
+
   release:
     name: Bump version & release
     runs-on: ubuntu-latest
     needs: setup
 
     steps:
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.nvm
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+
       - name: Set up git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -54,6 +76,17 @@ jobs:
       - release
 
     steps:
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.nvm
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+
       - name: Build extension
         run: pnpm build
 
@@ -74,6 +107,17 @@ jobs:
       - build
 
     steps:
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.nvm
+            ~/.pnpm-store
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
