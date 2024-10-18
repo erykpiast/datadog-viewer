@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Install NVM
         run: |
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -45,6 +48,9 @@ jobs:
     needs: setup
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -76,6 +82,9 @@ jobs:
       - release
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -103,21 +112,9 @@ jobs:
     name: Upload & publish
     runs-on: ubuntu-latest
     needs:
-      - setup
       - build
 
     steps:
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.nvm
-            ~/.pnpm-store
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('.nvmrc') }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node
-
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
