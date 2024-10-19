@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.6 (2024-10-19)
+
+
+### Bug Fixes
+
+* **cd:** update the artifact action version ([678e4d9](https://github.com/erykpiast/datadog-viewer/commit/678e4d97ac256b1ef4b7434c562e90d7127c597f))
+
 ### 1.0.5 (2024-10-19)
 
 ### 1.0.4 (2024-10-17)
