@@ -1,6 +1,6 @@
 {
   "name": "datadog-viewer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Chrome DevTools extension to monitor DataDog events.",
   "type": "module",
   "scripts": {
