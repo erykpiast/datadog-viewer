@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.1.0 (2024-10-20)
+
+
+### Features
+
+* **cd:** add release scripts ([b44d3eb](https://github.com/erykpiast/datadog-viewer/commit/b44d3ebbe1673182f518834d9d0125e67686148a))
+
 ### 0.0.1 (2024-10-16)
 
 ### Features
