@@ -34,9 +34,9 @@ export function RecordActivityContextWrapper({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [isRecording, setIsRecording] = usePersistentSetting<boolean | null>(
+  const [isRecording, setIsRecording] = usePersistentSetting(
     "isRecording",
-    null
+    true
   );
 
   const toggle = useCallback(() => {

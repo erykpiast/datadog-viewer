@@ -249,9 +249,7 @@ export function FiltersPanelWrapper({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const [areFiltersVisible, setAreFiltersVisible] = usePersistentSetting<
-    boolean | null
-  >("areFiltersVisible", null);
+  const [areFiltersVisible, setAreFiltersVisible] = usePersistentSetting("areFiltersVisible", true);
 
   const toggle = useCallback(() => {
     setAreFiltersVisible((value) => !value);
