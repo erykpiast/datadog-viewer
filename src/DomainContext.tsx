@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
+import { usePersistentSetting } from "./usePersistentSetting";
 
 export const DomainContext = createContext<{
   domain: string | null;
@@ -14,23 +15,10 @@ export function DomainContextWrapper({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const [domain, setDomain] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (domain === null) {
-      return;
-    }
-
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.set({ domain });
-  }, [domain]);
-
-  useEffect(() => {
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.get("domain", ({ domain }: { domain: string }) => {
-      setDomain(domain);
-    });
-  }, [setDomain]);
+  const [domain, setDomain] = usePersistentSetting<string | null>(
+    "domain",
+    null
+  );
 
   return (
     <DomainContext.Provider value={{ domain, setDomain }}>

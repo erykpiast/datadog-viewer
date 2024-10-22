@@ -1,14 +1,8 @@
-import {
-  type ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { type ReactNode, createContext, useCallback, useContext } from "react";
 
 import texts from "./text-copy.json" assert { type: "json" };
 import { ToggleButton } from "./ToggleButton";
+import { usePersistentSetting } from "./usePersistentSetting";
 
 export const PreserveLogContext = createContext<{
   preserveLog: boolean | null;
@@ -39,26 +33,10 @@ export function PreserveLogToggleContextWrapper({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [preserveLog, setPreserveLog] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    if (preserveLog === null) {
-      return;
-    }
-
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.set({ preserveLog });
-  }, [setPreserveLog, preserveLog]);
-
-  useEffect(() => {
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.get(
-      "preserveLog",
-      ({ preserveLog }: { preserveLog: boolean }) => {
-        setPreserveLog(preserveLog);
-      }
-    );
-  }, [setPreserveLog]);
+  const [preserveLog, setPreserveLog] = usePersistentSetting<boolean | null>(
+    "preserveLog",
+    null
+  );
 
   const toggle = useCallback(() => {
     setPreserveLog((value) => !value);

@@ -12,6 +12,7 @@ import texts from "./text-copy.json" assert { type: "json" };
 
 import "./Filters.css";
 import { ToggleButton } from "./ToggleButton";
+import { usePersistentSetting } from "./usePersistentSetting";
 
 type FilterableEvent = {
   service: string;
@@ -248,28 +249,9 @@ export function FiltersPanelWrapper({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const [areFiltersVisible, setAreFiltersVisible] = useState<boolean | null>(
-    null
-  );
-
-  useEffect(() => {
-    if (areFiltersVisible === null) {
-      return;
-    }
-
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.set({ areFiltersVisible });
-  }, [setAreFiltersVisible, areFiltersVisible]);
-
-  useEffect(() => {
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.get(
-      "areFiltersVisible",
-      ({ areFiltersVisible }: { areFiltersVisible: boolean }) => {
-        setAreFiltersVisible(areFiltersVisible);
-      }
-    );
-  }, [setAreFiltersVisible]);
+  const [areFiltersVisible, setAreFiltersVisible] = usePersistentSetting<
+    boolean | null
+  >("areFiltersVisible", null);
 
   const toggle = useCallback(() => {
     setAreFiltersVisible((value) => !value);

@@ -3,8 +3,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
-  useState,
 } from "react";
 
 import { DomainContext } from "./DomainContext";
@@ -12,6 +10,7 @@ import texts from "./text-copy.json" assert { type: "json" };
 import { ToggleButton } from "./ToggleButton";
 
 import "./Settings.css";
+import { usePersistentSetting } from "./usePersistentSetting";
 
 const SettingsPanelContext = createContext<{
   areSettingsVisible: boolean | null;
@@ -72,28 +71,9 @@ export function SettingsPanelWrapper({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const [areSettingsVisible, setAreSettingsVisible] = useState<boolean | null>(
-    null
-  );
-
-  useEffect(() => {
-    if (areSettingsVisible === null) {
-      return;
-    }
-
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.set({ areSettingsVisible });
-  }, [setAreSettingsVisible, areSettingsVisible]);
-
-  useEffect(() => {
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.get(
-      "areSettingsVisible",
-      ({ areSettingsVisible }: { areSettingsVisible: boolean }) => {
-        setAreSettingsVisible(areSettingsVisible);
-      }
-    );
-  }, [setAreSettingsVisible]);
+  const [areSettingsVisible, setAreSettingsVisible] = usePersistentSetting<
+    boolean | null
+  >("areSettingsVisible", null);
 
   const toggle = useCallback(() => {
     setAreSettingsVisible((prev) => !prev);

@@ -1,16 +1,10 @@
-import {
-  type ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { type ReactNode, createContext, useCallback, useContext } from "react";
 
 import * as texts from "./text-copy.json" assert { type: "json" };
 import { ToggleButton } from "./ToggleButton";
 
 import "./RecordActivityToggle.css";
+import { usePersistentSetting } from "./usePersistentSetting";
 
 export function RecordActivityToggle(): JSX.Element {
   const { isRecording, toggle } = useContext(RecordActivityContext);
@@ -40,26 +34,10 @@ export function RecordActivityContextWrapper({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [isRecording, setIsRecording] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    if (isRecording === null) {
-      return;
-    }
-
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.set({ isRecording });
-  }, [setIsRecording, isRecording]);
-
-  useEffect(() => {
-    /* @ts-expect-error TODO: type chrome interface properly */
-    chrome.storage.sync.get(
-      "isRecording",
-      ({ isRecording }: { isRecording: boolean }) => {
-        setIsRecording(isRecording);
-      }
-    );
-  }, [setIsRecording]);
+  const [isRecording, setIsRecording] = usePersistentSetting<boolean | null>(
+    "isRecording",
+    null
+  );
 
   const toggle = useCallback(() => {
     setIsRecording((value) => !value);
