@@ -20,6 +20,7 @@ import * as texts from "./text-copy.json" assert { type: "json" };
 
 import "./EventsList.css";
 import { getEventName } from "./event";
+import { formatDuration } from "./time";
 
 type Event = {
   date: number;
@@ -115,7 +116,7 @@ export function EventsList({
         id: "relativeTime",
         header: texts.eventsList.columns.relativeTime.header,
         accessorKey: "relativeTime",
-        cell: ({ getValue }) => `${(getValue() as number).toFixed(0)} ms`,
+        cell: ({ getValue }) => formatDuration(getValue() as number),
       },
       {
         id: "service",
