@@ -33,4 +33,18 @@
   header:has(nav input[type=radio][value="overview"]:not(:checked)) + main > & {
     display: none;
   }
+
+  .unknown-event {
+    text-align: center;
+    padding: var(--spacing-3);
+
+    & > strong {
+      display: inline-block;
+
+      font-size: var(--font-size-big);
+      font-weight: 500;
+
+      margin-bottom: var(--spacing-2);
+    }
+  }
 }

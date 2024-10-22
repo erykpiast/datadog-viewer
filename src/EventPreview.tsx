@@ -5,7 +5,7 @@ import texts from "./text-copy.json" assert { type: "json" };
 import "./EventPreview.css";
 
 import { EventPreviewDetails } from "./EventPreviewDetails";
-import { EventPreviewOverview } from "./EventPreviewOverview";
+import { EventPreviewOverview, isKnownEventType } from "./EventPreviewOverview";
 import { Tabs } from "./Tabs";
 
 interface EventPreviewProps {
@@ -18,7 +18,7 @@ export function EventPreview({
   event,
   onClose,
 }: EventPreviewProps): JSX.Element {
-  const [selectedTabId, setSelectedTabId] = useState("overview");
+  const [selectedTabId, setSelectedTabId] = useState(isKnownEventType(event.type) ? "overview" : "details");
 
   return (
     <section className="event-preview">

@@ -123,6 +123,10 @@
           "performance": "Performance",
           "resourceSizes": "Sizes"
         },
+        "unknownEvent": {
+          "heading": "Unknown Event",
+          "description": "Please see the Details tab for raw event data."
+        },
         "url": "URL",
         "vital": {
           "description": "Description",

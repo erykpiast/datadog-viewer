@@ -288,6 +288,16 @@ function VitalEventOverview({
   );
 }
 
+function UnknownEventOverview() {
+  return (
+    <p className="unknown-event">
+      <strong>{texts.eventPreview.tabs.overview.unknownEvent.heading}</strong>
+      <br />
+      {texts.eventPreview.tabs.overview.unknownEvent.description}
+    </p>
+  );
+}
+
 export function EventPreviewOverview({
   className,
   event,
@@ -315,6 +325,13 @@ export function EventPreviewOverview({
       ) : null}
       {event.type === "view" ? <ViewEventOverview event={event} /> : null}
       {event.type === "vital" ? <VitalEventOverview event={event} /> : null}
+      {!isKnownEventType(event.type) ? <UnknownEventOverview /> : null}
     </section>
   );
+}
+
+export function isKnownEventType(
+  type: string
+): type is "action" | "long_task" | "resource" | "view" | "vital" {
+  return ["action", "long_task", "resource", "view", "vital"].includes(type);
 }
