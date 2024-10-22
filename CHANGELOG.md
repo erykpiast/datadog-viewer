@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.1 (2024-10-22)
+
+
+### Bug Fixes
+
+* correct hover color for table headers ([e598743](https://github.com/erykpiast/datadog-viewer/commit/e598743182f707e183e183aebd29764d85f8d1ad))
+
 ## 1.1.0 (2024-10-20)
 
 
