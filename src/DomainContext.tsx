@@ -17,7 +17,7 @@ export function DomainContextWrapper({
 }): JSX.Element {
   const [domain, setDomain] = usePersistentSetting<string | null>(
     "domain",
-    null
+    "browser-intake-datadoghq.com"
   );
 
   return (
