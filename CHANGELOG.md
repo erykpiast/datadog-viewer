@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.2 (2024-10-23)
+
+
+### Bug Fixes
+
+* **cd:** skip the top-level folder when preparing extension package ([4fe34d8](https://github.com/erykpiast/datadog-viewer/commit/4fe34d86517a64269824c954b2f3f727788a8d7c))
+
 ### 1.1.1 (2024-10-22)
 
 
