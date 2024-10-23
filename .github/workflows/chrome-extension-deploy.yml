@@ -47,14 +47,11 @@ jobs:
       - name: Build extension
         run: pnpm build
 
-      - name: Zip the extension
-        run: zip -r extension.zip dist
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: extension
-          path: extension.zip
+          name: dist
+          path: dist/*
 
   upload_and_publish:
     name: Upload & publish
@@ -66,8 +63,11 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: extension
+          name: dist
           path: .
+
+      - name: Bundle extension
+        run: zip -r extension.zip ./*
 
       - name: Upload & release the extension
         uses: mnao305/chrome-extension-upload@v5.0.0
