@@ -33,8 +33,6 @@
   & > main {
     background-color: var(--background-color);
     
-    flex-grow: 1;
-    
     & > * {
       height: 100%;
     }
