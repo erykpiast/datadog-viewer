@@ -157,42 +157,17 @@
   }
 }
 
-@container main (width < 30ch) {
-  thead > tr > th,
-  tbody > tr > td {
-    &:nth-child(n+1) {
-      border-right: 0;
-    }
+.panel:has(aside > .event-preview) {
+  .events-list {
+    & > thead > tr > th,
+    & > tbody > tr > td {
+      &:nth-child(n+1) {
+        border-right: 0;
+      }
 
-    &:nth-child(n+2) {
-      display: none;
-    }
-  }
-}
-
-@container main (width < 40ch) {
-  thead > tr > th,
-  tbody > tr > td {
-    &:nth-child(n+2) {
-      border-right: 0;
-    }
-
-    &:nth-child(n+3) {
-      display: none;
+      &:nth-child(n+2) {
+        display: none;
+      }
     }
   }
 }
-
-@container main (width < 60ch) {
-  thead > tr > th,
-  tbody > tr > td {
-    &:nth-child(n+3) {
-      border-right: 0;
-    }
-
-    &:nth-child(n+4) {
-      display: none;
-    }
-  }
-}
-

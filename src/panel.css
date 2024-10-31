@@ -169,9 +169,6 @@ body {
   & > main {
     grid-area: content;
     
-    container-type: inline-size;
-    container-name: main;
-    
     overflow-y: auto;
 
     position: relative;
