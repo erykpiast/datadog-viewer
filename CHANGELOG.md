@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.3 (2024-10-31)
+
+
+### Bug Fixes
+
+* **ui:** break long URLs in preview panel ([cb2a632](https://github.com/erykpiast/datadog-viewer/commit/cb2a6322c788462560f540740f0ca416727b3440))
+
 ### 1.1.2 (2024-10-24)
 
 ### 1.1.1 (2024-10-22)
