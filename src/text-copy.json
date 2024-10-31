@@ -39,12 +39,12 @@
     "resource": {
       "iconAlt": "resource",
       "defaults": {
-        "renderBlockingStatus": "unknown",
-        "requestStatusCode": "unknown"
+        "renderBlockingStatus": "unknown blocking status",
+        "requestStatusCode": "unknown status code"
       }
     },
     "unknown": {
-      "iconAlt": "unknown"
+      "iconAlt": "unknown event type"
     },
     "view": {
       "active": "active",
@@ -88,7 +88,10 @@
             "missing": "unknown",
             "unit": "ms"
           },
-          "renderBlockingStatus": "Render Blocking Status",
+          "renderBlockingStatus": {
+            "label": "Render Blocking Status",
+            "default": "unknown"
+          },
           "sizes": {
             "encodedBodySize": {
               "label": "Encoded Body Size",
