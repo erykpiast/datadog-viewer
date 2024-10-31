@@ -1,6 +1,6 @@
 export function formatDuration(durationMs: number): string {
   if (durationMs < 10000) {
-    return `${durationMs} ms`;
+    return `${Math.round(durationMs)} ms`;
   } else if (durationMs < 60000) {
     const seconds = Number(durationMs / 1000).toFixed(2);
     return `${seconds} s`;
