@@ -91,9 +91,16 @@ function ResourceEventOverview({
               : texts.eventPreview.tabs.overview.resource.statusCode.missing}
           </dd>
           <dt>
-            {texts.eventPreview.tabs.overview.resource.renderBlockingStatus}
+            {
+              texts.eventPreview.tabs.overview.resource.renderBlockingStatus
+                .label
+            }
           </dt>
-          <dd>{event.resource.render_blocking_status}</dd>
+          <dd>
+            {event.resource.render_blocking_status ??
+              texts.eventPreview.tabs.overview.resource.renderBlockingStatus
+                .default}
+          </dd>
           <dt>{texts.eventPreview.tabs.overview.resource.duration.label}</dt>
           <dd>
             {event.resource.duration !== undefined
