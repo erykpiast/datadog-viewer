@@ -27,6 +27,10 @@
     & > dd {
       grid-column-start: 2; 
       margin-left: 0;
+
+      /* NOTE: URLs can be long! */
+      overflow: hidden;
+      word-wrap: break-word;
     }
   }
 
