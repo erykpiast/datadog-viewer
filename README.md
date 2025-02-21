@@ -16,6 +16,8 @@ Testing DataDog API calls isn't the most pleasant thing you do at work. The SDK 
 
 Thanks to the power of LLMs and endless hours spent on writing CSS to make the UI look like native tab in DevTools, you can enjoy your work again.
 
+Install it via [Chrome Web Store](https://chromewebstore.google.com/detail/datadog-event-monitor/cbmkpmahhohcoocponpomeegpdlhlmim).
+
 ## FAQ
 
 ### I see no events
