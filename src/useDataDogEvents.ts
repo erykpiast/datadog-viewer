@@ -3,6 +3,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { DomainContext } from "./DomainContext";
 import { PreserveLogContext } from "./PreserveLogToggle";
 import { RecordActivityContext } from "./RecordActivityToggle";
+import { maybeDecodeDeflate } from "./decode";
 
 export function useDataDogEvents<T>(onClearEvents: () => void): {
   events: Array<T>;
@@ -19,7 +20,7 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
       return;
     }
 
-    const listener = ({
+    const listener = async ({
       request,
     }: {
       request: { postData?: { mimeType: string; text: string }; url: string };
@@ -38,9 +39,9 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
         return;
       }
 
-      const lines = request.postData.text
-        .split("\n")
-        .filter((line: string) => line.trim());
+      const decoded = await maybeDecodeDeflate(request.postData.text);
+
+      const lines = decoded.split("\n").filter((line: string) => line.trim());
       const newEvents = lines.map((line: string) => JSON.parse(line));
 
       newEvents.forEach((event: { date: number }) => {
