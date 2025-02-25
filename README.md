@@ -63,6 +63,9 @@ To set up the development environment:
    - Open Chrome and navigate to `chrome://extensions/`
    - Enable "Developer mode"
    - Click "Load unpacked" and select the `dist` directory of the project
+  
+> [!Note]
+> If you want to change styles only, you can easily test your changes [in the CodePen](https://codepen.io/erykpiast/pen/oNKjwGw?editors=1100). It has all the styles used in the extension and a simplified markup.
 
 ## Contribution
 
