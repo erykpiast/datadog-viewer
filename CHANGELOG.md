@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github-personal/erykpiast/datadog-viewer/compare/v1.1.3...v1.2.0) (2025-02-25)
+
+
+### Features
+
+* support compressed events ([da131d0](https://github-personal/erykpiast/datadog-viewer/commit/da131d06fae026003e09a32bf0f8be5e74a43149))
+
 ### 1.1.3 (2024-10-31)
 
 
