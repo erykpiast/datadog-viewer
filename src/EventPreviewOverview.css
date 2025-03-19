@@ -38,6 +38,11 @@
     display: none;
   }
 
+  .error-stack {
+    overflow-x: auto;
+    margin-right: var(--spacing-4);
+  }
+
   .unknown-event {
     text-align: center;
     padding: var(--spacing-3);

@@ -10,6 +10,7 @@ import { useMemo, useState } from "react";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 
 import { ActionEventOverview } from "./ActionEventOverview";
+import { ErrorEventOverview } from "./ErrorEventOverview";
 import { LongTaskEventOverview } from "./LongTaskEventOverview";
 import { ResourceEventOverview } from "./ResourceEventOverview";
 import { UnknownEventOverview } from "./UnknownEventOverview";
@@ -74,6 +75,15 @@ type Event = {
       type: "long_task";
       long_task: { id: string; duration: number };
     }
+  | {
+      type: "error";
+      error: {
+        handling: string;
+        message: string;
+        source: string;
+        stack: string;
+      };
+    }
 );
 
 export function EventsList({
@@ -105,6 +115,8 @@ export function EventsList({
               return <ViewEventOverview event={row} name={name} />;
             case "resource":
               return <ResourceEventOverview event={row} name={name} />;
+            case "error":
+              return <ErrorEventOverview event={row} name={name} />;
             default:
               return <UnknownEventOverview event={row} name={name} />;
           }
