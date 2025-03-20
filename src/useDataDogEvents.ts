@@ -54,6 +54,38 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
         event.relativeTime = event.date - minTime.current;
       });
 
+      newEvents.forEach(
+        (event: { type?: unknown; user_action?: unknown; error?: unknown }) => {
+          if ("type" in event) {
+            return;
+          }
+
+          if ("user_action" in event) {
+            if ("error" in event) {
+              event.type = "error";
+
+              if (
+                "message" in event &&
+                typeof event.message === "string" &&
+                typeof event.error === "object" &&
+                event.error !== null
+              ) {
+                const [message, ...stack] = event.message.split(" at ");
+                Object.assign(event.error, {
+                  message,
+                  source: "user action",
+                  stack: stack.map((line) => `  at ${line}`),
+                });
+              }
+            }
+
+            if ("logger" in event) {
+              event.type = "log";
+            }
+          }
+        }
+      );
+
       setEvents((prev) => [...prev, ...newEvents]);
     };
 

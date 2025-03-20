@@ -31,6 +31,17 @@
         "header": "Relative time"
       }
     },
+    "error": {
+      "iconAlt": "error",
+      "defaults": {
+        "handling": "unknown handling",
+        "source": "unknown source"
+      },
+      "name": "Error"
+    },
+    "log": {
+      "iconAlt": "Log"
+    },
     "longTask": {
       "iconAlt": "long task",
       "name": "Long Task",
@@ -63,6 +74,22 @@
           "targetName": "Target Name",
           "type": "Type"
         },
+        "error": {
+          "handling": {
+            "label": "Handling",
+            "default": "Unknown"
+          },
+          "message": {
+            "label": "Message"
+          },
+          "source": {
+            "label": "Source",
+            "default": "Unknown"
+          },
+          "stack": {
+            "label": "Stack"
+          }
+        },
         "domComplete": { "label": "DOM Complete", "unit": "ms" },
         "domContentLoaded": { "label": "DOM Content Loaded", "unit": "ms" },
         "domInteractive": { "label": "DOM Interactive", "unit": "ms" },
@@ -75,6 +102,17 @@
         "header": "Overview",
         "loadingTime": { "label": "Loading Time", "unit": "ms" },
         "loadingType": "Loading type",
+        "log": {
+          "message": {
+            "label": "Message"
+          },
+          "loggerName": {
+            "label": "Logger"
+          },
+          "status": {
+            "label": "Level"
+          }
+        },
         "longTask": {
           "duration": {
             "label": "Duration",

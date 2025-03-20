@@ -58,6 +58,20 @@ type FilterableEvent = {
   | {
       type: "long_task";
     }
+  | {
+      type: "error";
+      error: {
+        message: string;
+        stack: string;
+      };
+    }
+  | {
+      type: "log";
+      logger: {
+        name: string;
+      };
+      message: string;
+    }
 );
 
 function filterEvents<TEvent extends FilterableEvent>(
@@ -97,6 +111,22 @@ function filterEvents<TEvent extends FilterableEvent>(
       },
       {
         name: "vital.description",
+        weight: 0.3,
+      },
+      {
+        name: "error.message",
+        weight: 0.5,
+      },
+      {
+        name: "error.stack",
+        weight: 0.1,
+      },
+      {
+        name: "message",
+        weight: 0.5,
+      },
+      {
+        name: "logger.name",
         weight: 0.3,
       },
     ],
@@ -170,7 +200,9 @@ export function Filters<TEvent extends FilterableEvent>({
         value === "action" ||
         value === "resource" ||
         value === "vital" ||
-        value === "long_task"
+        value === "long_task" ||
+        value === "error" ||
+        value === "log"
       ) {
         setSelectedEventType(value);
         onFiltersChange();
@@ -249,7 +281,10 @@ export function FiltersPanelWrapper({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  const [areFiltersVisible, setAreFiltersVisible] = usePersistentSetting("areFiltersVisible", true);
+  const [areFiltersVisible, setAreFiltersVisible] = usePersistentSetting(
+    "areFiltersVisible",
+    true
+  );
 
   const toggle = useCallback(() => {
     setAreFiltersVisible((value) => !value);
