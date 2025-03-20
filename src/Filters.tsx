@@ -65,6 +65,13 @@ type FilterableEvent = {
         stack: string;
       };
     }
+  | {
+      type: "log";
+      logger: {
+        name: string;
+      };
+      message: string;
+    }
 );
 
 function filterEvents<TEvent extends FilterableEvent>(
@@ -113,6 +120,14 @@ function filterEvents<TEvent extends FilterableEvent>(
       {
         name: "error.stack",
         weight: 0.1,
+      },
+      {
+        name: "message",
+        weight: 0.5,
+      },
+      {
+        name: "logger.name",
+        weight: 0.3,
       },
     ],
     includeScore: true,
@@ -186,7 +201,8 @@ export function Filters<TEvent extends FilterableEvent>({
         value === "resource" ||
         value === "vital" ||
         value === "long_task" ||
-        value === "error"
+        value === "error" ||
+        value === "log"
       ) {
         setSelectedEventType(value);
         onFiltersChange();

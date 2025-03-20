@@ -73,10 +73,14 @@ export function useDataDogEvents<T>(onClearEvents: () => void): {
                 const [message, ...stack] = event.message.split(" at ");
                 Object.assign(event.error, {
                   message,
-                  source: 'user action',
-                  stack: stack.map((line) => `\t at ${line}`),
+                  source: "user action",
+                  stack: stack.map((line) => `  at ${line}`),
                 });
               }
+            }
+
+            if ("logger" in event) {
+              event.type = "log";
             }
           }
         }

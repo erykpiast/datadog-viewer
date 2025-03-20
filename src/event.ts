@@ -38,6 +38,10 @@ type Event =
       error: {
         message: string;
       };
+    }
+  | {
+      type: "log";
+      message: string;
     };
 
 export function getEventName(event: Event) {
@@ -55,6 +59,8 @@ export function getEventName(event: Event) {
         ${texts.eventsList.longTask.unit}`;
     case "error":
       return event.error.message;
+    case "log":
+      return event.message;
     default:
       return texts.eventPreview.unnamed;
   }

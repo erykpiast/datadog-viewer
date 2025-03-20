@@ -333,6 +333,33 @@ function ErrorEventOverview({
   );
 }
 
+function LogEventOverview({
+  event,
+}: {
+  event: {
+    logger: {
+      name: string;
+    };
+    message: string;
+    status: string;
+  };
+}) {
+  return (
+    <>
+      <Accordion summary={texts.eventPreview.tabs.overview.sections.general}>
+        <dl>
+          <dt>{texts.eventPreview.tabs.overview.log.message.label}</dt>
+          <dd>{event.message}</dd>
+          <dt>{texts.eventPreview.tabs.overview.log.loggerName.label}</dt>
+          <dd>{event.logger.name}</dd>
+          <dt>{texts.eventPreview.tabs.overview.log.status.label}</dt>
+          <dd>{event.status}</dd>
+        </dl>
+      </Accordion>
+    </>
+  );
+}
+
 function UnknownEventOverview() {
   return (
     <p className="unknown-event">
@@ -358,7 +385,8 @@ export function EventPreviewOverview({
       })
     | (ComponentProps<typeof ViewEventOverview>["event"] & { type: "view" })
     | (ComponentProps<typeof VitalEventOverview>["event"] & { type: "vital" })
-    | (ComponentProps<typeof ErrorEventOverview>["event"] & { type: "error" });
+    | (ComponentProps<typeof ErrorEventOverview>["event"] & { type: "error" })
+    | (ComponentProps<typeof LogEventOverview>["event"] & { type: "log" });
 }): JSX.Element {
   return (
     <section className={`${className} event-preview-overview`}>
@@ -372,6 +400,7 @@ export function EventPreviewOverview({
       {event.type === "view" ? <ViewEventOverview event={event} /> : null}
       {event.type === "vital" ? <VitalEventOverview event={event} /> : null}
       {event.type === "error" ? <ErrorEventOverview event={event} /> : null}
+      {event.type === "log" ? <LogEventOverview event={event} /> : null}
       {!isKnownEventType(event.type) ? <UnknownEventOverview /> : null}
     </section>
   );
@@ -379,8 +408,21 @@ export function EventPreviewOverview({
 
 export function isKnownEventType(
   type: string
-): type is "action" | "long_task" | "resource" | "view" | "vital" | "error" {
-  return ["action", "long_task", "resource", "view", "vital", "error"].includes(
-    type
-  );
+): type is
+  | "action"
+  | "long_task"
+  | "resource"
+  | "view"
+  | "vital"
+  | "error"
+  | "log" {
+  return [
+    "action",
+    "long_task",
+    "resource",
+    "view",
+    "vital",
+    "error",
+    "log",
+  ].includes(type);
 }

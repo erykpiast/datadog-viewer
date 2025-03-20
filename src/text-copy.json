@@ -39,6 +39,9 @@
       },
       "name": "Error"
     },
+    "log": {
+      "iconAlt": "Log"
+    },
     "longTask": {
       "iconAlt": "long task",
       "name": "Long Task",
@@ -99,6 +102,17 @@
         "header": "Overview",
         "loadingTime": { "label": "Loading Time", "unit": "ms" },
         "loadingType": "Loading type",
+        "log": {
+          "message": {
+            "label": "Message"
+          },
+          "loggerName": {
+            "label": "Logger"
+          },
+          "status": {
+            "label": "Level"
+          }
+        },
         "longTask": {
           "duration": {
             "label": "Duration",
